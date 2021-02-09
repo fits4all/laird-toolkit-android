@@ -1,0 +1,17 @@
+<!--
+Copyright (c) 2014 Laird Technologies. All Rights Reserved.
+  
+The information contained herein is property of Laird Technologies.
+Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
+This heading must NOT be removed from the file.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_clear"
+        android:orderInCategory="9999"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/action_clear">
+    </item>
+
+</menu>

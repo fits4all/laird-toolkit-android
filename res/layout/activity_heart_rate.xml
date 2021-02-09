@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2014 Laird Technologies. All Rights Reserved.
+  
+The information contained herein is property of Laird Technologies.
+Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
+This heading must NOT be removed from the file.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <include
+        android:id="@+id/commonConnectedDeviceDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        layout="@layout/common_connected_device_details"
+        android:background="@drawable/border" />
+
+    <RelativeLayout
+        android:id="@+id/holderSpecificHeartRateValues"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/commonConnectedDeviceDetails"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border" >
+
+        <include
+            android:id="@+id/specificHeartRateValues"
+            layout="@layout/specific_heart_rate_values" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/chartLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/includeBtnScan"
+        android:layout_alignLeft="@+id/holderSpecificHeartRateValues"
+        android:layout_below="@+id/holderSpecificHeartRateValues"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <include
+        android:id="@+id/includeBtnScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        layout="@layout/scan_button" />
+
+</RelativeLayout>

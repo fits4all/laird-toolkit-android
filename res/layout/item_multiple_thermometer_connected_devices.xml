@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/commonConnectedDeviceDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/common_connected_device_details" />
+
+    
+    <include
+        android:id="@+id/specificThermometerValues"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/commonConnectedDeviceDetails"
+        layout="@layout/specific_thermometer_values" />
+    
+    <!--  
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/labelTemperatureMeasurement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0"
+            android:text="@string/label_temperature_measurement"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/valueTemperatureMeasurement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="999"
+            android:ellipsize="end"
+            android:text=""
+            android:textSize="18sp" />
+    </TableRow>
+-->
+
+</RelativeLayout>

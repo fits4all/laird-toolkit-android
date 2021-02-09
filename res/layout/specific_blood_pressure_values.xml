@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/labelSystolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/label_systolic"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/valueSystolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/valueDiastolic"
+        android:layout_alignParentTop="true"
+        android:text="@string/non_applicable" />
+
+    <TextView
+        android:id="@+id/labelDiastolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelSystolic"
+        android:text="@string/label_diastolic"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/valueDiastolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/valueSystolic"
+        android:layout_toRightOf="@id/labelDiastolic"
+        android:text="@string/non_applicable" />
+
+    <TextView
+        android:id="@+id/labelArterialPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelDiastolic"
+        android:text="@string/label_arterial_pressure"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/valueArterialPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/valueDiastolic"
+        android:layout_toRightOf="@id/labelArterialPressure"
+        android:text="@string/non_applicable" />
+
+</RelativeLayout>

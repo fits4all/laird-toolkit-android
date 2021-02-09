@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/customParentLayout"
+    android:orientation="vertical" >
+
+    <!-- list of connected devices -->
+
+    <ListView
+        android:id="@+id/lvConnectedDevices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/includeBtnScan"
+        android:divider="@android:color/holo_orange_dark"
+        android:dividerHeight="2dp" />
+
+    <TextView
+        android:id="@+id/hintTv"
+        style="@style/hintTv" />
+
+    <include
+        android:id="@+id/includeBtnScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        layout="@layout/scan_button" />
+
+</RelativeLayout>
