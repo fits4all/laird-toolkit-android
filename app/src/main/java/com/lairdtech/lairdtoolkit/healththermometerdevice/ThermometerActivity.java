@@ -134,7 +134,7 @@ public class ThermometerActivity extends BleBaseActivity implements
 			@Override
 			public void run()
 			{
-				mValueTempMeasurement.setText(result + " °C");
+				mValueTempMeasurement.setText(result + " Â°C");
 				mGraph.addNewData(Double.parseDouble(result));
 			}
 		});
