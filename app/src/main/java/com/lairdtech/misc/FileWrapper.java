@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- *******************************************************************************/
-
 package com.lairdtech.misc;
 
 import java.io.File;
@@ -170,10 +162,10 @@ public class FileWrapper
 	 */
 	private void setFileNameWithoutExtension()
 	{
-		int dotposition = mFileName.lastIndexOf(".");
-		if (dotposition != -1)
+		int dotPosition = mFileName.lastIndexOf(".");
+		if (dotPosition != -1)
 		{
-			mFileNameWithoutExtension = mFileName.substring(0, dotposition);
+			mFileNameWithoutExtension = mFileName.substring(0, dotPosition);
 		}
 		else
 		{
@@ -314,12 +306,6 @@ public class FileWrapper
 	 */
 	public String readUntilASpecificChar(String readUntil)
 	{
-		String result = FileHandling.readUntilASpecificChar(this, readUntil);
-
-		if (result != null)
-		{
-			return result;
-		}
-		return null;
+		return FileHandling.readUntilASpecificChar(this, readUntil);
 	}
 }

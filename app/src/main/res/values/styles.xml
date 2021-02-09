@@ -1,23 +1,19 @@
 <resources>
 
-    <!--
-Copyright (c) 2014 Laird Technologies. All Rights Reserved.
-  
-The information contained herein is property of Laird Technologies.
-Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
-This heading must NOT be removed from the file.
-    -->
+
 
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
+
         -->
     </style>
 

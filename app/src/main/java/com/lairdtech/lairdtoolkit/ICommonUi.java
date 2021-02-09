@@ -6,17 +6,20 @@ public interface ICommonUi
 	 * Binds the generic textViews, Buttons, Layouts and ListViews in the
 	 * Managers.
 	 */
-	public void bindViews();
+	void bindViews();
 
 	/**
-	 * used to set handlers and adapters
+	 * Used to set handlers and adapters.
 	 */
-	public void setAdapters();
+	void setAdapters();
 
 	/**
-	 * used to set listeners
+	 * Used to set listeners.
 	 */
-	public void setListeners();
+	void setListeners();
 
-	public void uiInvalidateBtnState();
+	/**
+	 * Used to invalidate btn state.
+	 */
+	void uiInvalidateBtnState();
 }

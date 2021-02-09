@@ -66,7 +66,7 @@ public abstract class BleBaseActivity extends BaseActivity implements
 	public void bindViews()
 	{
 		super.bindViews();
-		mBtnScan = (Button) findViewById(R.id.btnScan);
+		mBtnScan = findViewById(R.id.btnScan);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public abstract class BleBaseActivity extends BaseActivity implements
 				{
 				case R.id.btnScan:
 				{
-					if (mBluetoothAdapterWrapper.isEnabled() == false)
+					if (!mBluetoothAdapterWrapper.isEnabled())
 					{
 						Log.w(TAG, "Bluetooth must be on to start scanning.");
 						Toast.makeText(getApplication(),
@@ -97,7 +97,7 @@ public abstract class BleBaseActivity extends BaseActivity implements
 					{
 
 						// do a scan operation
-						if (isPrefPeriodicalScan == true)
+						if (isPrefPeriodicalScan)
 						{
 							mBluetoothAdapterWrapper.startBleScanPeriodically();
 						}
@@ -130,13 +130,9 @@ public abstract class BleBaseActivity extends BaseActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		switch (item.getItemId())
-		{
-
-		case android.R.id.home:
+		if (item.getItemId() == android.R.id.home) {
 			mBleBaseDeviceManager.disconnect();
 			finish();
-			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -146,7 +142,7 @@ public abstract class BleBaseActivity extends BaseActivity implements
 	{
 		super.onPause();
 
-		if (isInNewScreen == true || isPrefRunInBackground == true)
+		if (isInNewScreen || isPrefRunInBackground)
 		{
 			// let the app run normally in the background
 		}

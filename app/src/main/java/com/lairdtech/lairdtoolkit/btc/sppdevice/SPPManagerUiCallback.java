@@ -3,19 +3,23 @@ package com.lairdtech.lairdtoolkit.btc.sppdevice;
 public interface SPPManagerUiCallback
 {
 	/**
-	 * called when the BT classic device gets connected
+	 * Called when the BT classic device gets connected
 	 */
-	public void onUiBtcRemoteDeviceConnected();
+	void onUiBtcRemoteDeviceConnected();
 
 	/**
-	 * called when the BT classic device gets disconnected
+	 * Called when the BT classic device gets disconnected
 	 */
-	public void onUiBtcRemoteDeviceDisconnected();
-
-	public void onUiBtcRemoteDeviceFailed();
+	void onUiBtcRemoteDeviceDisconnected();
 
 	/**
-	 * called when data is received from the remote BT classic device
+	 * Called when the btc classic devices fails or errors
 	 */
-	public void onUiRemoteDeviceRead(String result);
+	void onUiBtcRemoteDeviceFailed();
+
+	/**
+	 * Called when data is received from the remote BT classic device
+	 */
+	void onUiRemoteDeviceRead(String result);
+
 }

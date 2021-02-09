@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.bt.ble.vsp;
 
 /**
@@ -26,7 +18,7 @@ public interface VirtualSerialPortDeviceCallback
 	 * @param found
 	 *            true if VSP service was found, otherwise false
 	 */
-	public void onUiVspServiceFound(final boolean found);
+	void onUiVspServiceFound(final boolean found);
 
 	/**
 	 * Callback that notifies us that the data was sent successfully to the
@@ -35,7 +27,7 @@ public interface VirtualSerialPortDeviceCallback
 	 * @param dataSend
 	 *            the value that was successfully send to the remote BLE device
 	 */
-	public void onUiSendDataSuccess(final String dataSend);
+	void onUiSendDataSuccess(final String dataSend);
 
 	/**
 	 * Callback for when data is received from the remote device
@@ -43,7 +35,8 @@ public interface VirtualSerialPortDeviceCallback
 	 * @param dataReceived
 	 *            the value that was received from the remote device
 	 */
-	public void onUiReceiveData(final String dataReceived);
+	void onUiReceiveData(final String dataReceived);
 
-	public void onUiUploaded();
+	void onUiUploaded();
+
 }

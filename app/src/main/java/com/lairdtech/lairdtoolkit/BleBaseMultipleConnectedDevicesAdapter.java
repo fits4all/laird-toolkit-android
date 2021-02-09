@@ -25,7 +25,7 @@ public class BleBaseMultipleConnectedDevicesAdapter extends BaseAdapter
 	public BleBaseMultipleConnectedDevicesAdapter(Activity par)
 	{
 		super();
-		mDevices = new ArrayList<BleBaseDeviceManager>();
+		mDevices = new ArrayList<>();
 		mInflater = par.getLayoutInflater();
 	}
 
@@ -38,7 +38,7 @@ public class BleBaseMultipleConnectedDevicesAdapter extends BaseAdapter
 	 */
 	public boolean addDevice(BleBaseDeviceManager device)
 	{
-		if (mDevices.contains(device) == false)
+		if (!mDevices.contains(device))
 		{
 			mDevices.add(device);
 			return true;

@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit;
 
 import java.util.ArrayList;
@@ -35,8 +27,8 @@ public class ListFoundDevicesHandler extends BaseAdapter
 	public ListFoundDevicesHandler(Activity par)
 	{
 		super();
-		mDevices = new ArrayList<BluetoothDevice>();
-		mRSSIs = new ArrayList<Integer>();
+		mDevices = new ArrayList<>();
+		mRSSIs = new ArrayList<>();
 		mInflater = par.getLayoutInflater();
 	}
 
@@ -44,7 +36,7 @@ public class ListFoundDevicesHandler extends BaseAdapter
 	{
 		Log.i(TAG, "Device added in found devices list: " + device.getAddress());
 
-		if (mDevices.contains(device) == false)
+		if (!mDevices.contains(device))
 		{
 			mDevices.add(device);
 			mRSSIs.add(rssi);
@@ -60,7 +52,7 @@ public class ListFoundDevicesHandler extends BaseAdapter
 	{
 		Log.i(TAG, "Device added in found devices list: " + device.getAddress());
 
-		if (mDevices.contains(device) == false)
+		if (!mDevices.contains(device))
 		{
 			mDevices.add(device);
 			mRSSIs.add(rssi);
@@ -116,11 +108,11 @@ public class ListFoundDevicesHandler extends BaseAdapter
 		{
 			convertView = mInflater.inflate(R.layout.item_scanned, null);
 			fields = new FieldReferences();
-			fields.valueDeviceName = (TextView) convertView
+			fields.valueDeviceName = convertView
 					.findViewById(R.id.valueDeviceNameItem);
-			fields.valueDeviceAddress = (TextView) convertView
+			fields.valueDeviceAddress = convertView
 					.findViewById(R.id.valueDeviceAddressItem);
-			fields.valueDeviceRssi = (TextView) convertView
+			fields.valueDeviceRssi = convertView
 					.findViewById(R.id.valueDeviceRssiItem);
 			convertView.setTag(fields);
 		}
@@ -145,7 +137,7 @@ public class ListFoundDevicesHandler extends BaseAdapter
 		return convertView;
 	}
 
-	private class FieldReferences
+	private static class FieldReferences
 	{
 		TextView valueDeviceName;
 		TextView valueDeviceAddress;

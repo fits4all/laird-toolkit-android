@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.bloodpressuredevice;
 
 import android.content.Intent;
@@ -55,16 +47,12 @@ public class BloodPressureActivity extends BleBaseActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		switch (item.getItemId())
-		{
-
-		case R.id.action_multiple_bloodpressure:
+		if (item.getItemId() == R.id.action_multiple_bloodpressure) {
 			mBloodPressureManager.disconnect();
 
 			Intent intent = new Intent(this,
 					BloodPressureMultipleConnectedDevicesActivity.class);
 			startActivity(intent);
-			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -76,9 +64,9 @@ public class BloodPressureActivity extends BleBaseActivity implements
 
 		bindCommonViews();
 
-		mSystolicResult = (TextView) findViewById(R.id.valueSystolic);
-		mDiastolicResult = (TextView) findViewById(R.id.valueDiastolic);
-		mArterialPressureResult = (TextView) findViewById(R.id.valueArterialPressure);
+		mSystolicResult = findViewById(R.id.valueSystolic);
+		mDiastolicResult = findViewById(R.id.valueDiastolic);
+		mArterialPressureResult = findViewById(R.id.valueArterialPressure);
 
 		View wholeScreenView = ((ViewGroup) this
 				.findViewById(android.R.id.content)).getChildAt(0);

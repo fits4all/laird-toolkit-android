@@ -52,16 +52,14 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 	public void bindViews()
 	{
 		super.bindViews();
-		mBtnSend = (Button) findViewById(R.id.btnSend);
-		mBtnScan = (Button) findViewById(R.id.btnScan);
 
-		mScrollViewConsoleOutput = (ScrollView) findViewById(R.id.scrollViewConsoleOutput);
-
-		mInputBox = (EditText) findViewById(R.id.inputBox);
-
-		mValueConsoleOutputTv = (TextView) findViewById(R.id.valueConsoleOutputTv);
-		mValueRxCounterTv = (TextView) findViewById(R.id.valueRxCounterTv);
-		mValueTxCounterTv = (TextView) findViewById(R.id.valueTxCounterTv);
+		mBtnSend = findViewById(R.id.btnSend);
+		mBtnScan = findViewById(R.id.btnScan);
+		mScrollViewConsoleOutput = findViewById(R.id.scrollViewConsoleOutput);
+		mInputBox = findViewById(R.id.inputBox);
+		mValueConsoleOutputTv = findViewById(R.id.valueConsoleOutputTv);
+		mValueRxCounterTv = findViewById(R.id.valueRxCounterTv);
+		mValueTxCounterTv = findViewById(R.id.valueTxCounterTv);
 	}
 
 	@Override
@@ -75,45 +73,33 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 			@Override
 			public void onClick(View v)
 			{
-				switch (v.getId())
-				{
-				case R.id.btnScan:
-				{
-					if (mBluetoothAdapterWrapper.isEnabled() == false)
-					{
+				if (v.getId() == R.id.btnScan) {
+					if (!mBluetoothAdapterWrapper.isEnabled()) {
 						Log.i(TAG, "Bluetooth must be on to start scanning.");
 						Toast.makeText(mActivity,
 								"Bluetooth must be on to start scanning.",
 								Toast.LENGTH_SHORT);
 						return;
-					}
-					else if (mSppManager == null)
-					{
+					} else if (mSppManager == null) {
 						/*
 						 * not connected
 						 */
 						mBluetoothAdapterWrapper.startDiscovery();
 						mDialogFoundDevices.show();
-					}
-					else if (mSppManager.isConnected() == false
-							&& mSppManager.isConnecting() == false)
-					{
+					} else if (!mSppManager.isConnected()
+							&& !mSppManager.isConnecting()) {
 						/*
 						 * not connected
 						 */
 						mBluetoothAdapterWrapper.startDiscovery();
 						mDialogFoundDevices.show();
-					}
-					else if (mSppManager.isConnected() == false
-							&& mSppManager.isConnecting() == true)
-					{
+					} else if (!mSppManager.isConnected()
+							&& mSppManager.isConnecting()) {
 						/*
 						 * connecting
 						 */
-					}
-					else if (mSppManager.isConnected() == true
-							&& mSppManager.isConnecting() == false)
-					{
+					} else if (mSppManager.isConnected()
+							&& !mSppManager.isConnecting()) {
 						/*
 						 * connected
 						 */
@@ -121,8 +107,6 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 					}
 
 					uiInvalidateBtnState();
-					break;
-				}
 				}
 			}
 		});
@@ -133,53 +117,40 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 			@Override
 			public void onClick(View v)
 			{
-				String data = null;
+				String data;
 
-				if (isPrefSendCR == true)
+				if (isPrefSendCR)
 				{
 					data = mInputBox.getText().toString() + "\r";
 				}
-				else if (isPrefSendCR == false)
-				{
+				else {
 					data = mInputBox.getText().toString();
 				}
 
-				if (data != null)
+				mValueConsoleOutputTv.append(data + "\n");
+				mCounterTx += data.length();
+				mSppManager.writeDataToRemoteDevice((data).getBytes());
+
+				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+				inputManager.hideSoftInputFromWindow(getCurrentFocus()
+						.getWindowToken(),
+						InputMethodManager.HIDE_NOT_ALWAYS);
+
+				if (isPrefClearTextAfterSending)
 				{
-					if (mValueConsoleOutputTv.getText().length() <= 0)
-					{
-						mValueConsoleOutputTv.append(data + "\n");
-					}
-					else
-					{
-						mValueConsoleOutputTv.append(data + "\n");
-					}
-
-					mCounterTx += data.length();
-
-					mSppManager.writeDataToRemoteDevice((data).getBytes());
-
-					InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
-					inputManager.hideSoftInputFromWindow(getCurrentFocus()
-							.getWindowToken(),
-							InputMethodManager.HIDE_NOT_ALWAYS);
-
-					if (isPrefClearTextAfterSending == true)
-					{
-						mInputBox.setText("");
-					}
-
-					runOnUiThread(new Runnable()
-					{
-						public void run()
-						{
-							mValueTxCounterTv.setText("" + mCounterTx);
-							mScrollViewConsoleOutput.smoothScrollTo(0,
-									mValueConsoleOutputTv.getBottom());
-						};
-					});
+					mInputBox.setText("");
 				}
+
+				runOnUiThread(new Runnable()
+				{
+					public void run()
+					{
+						mValueTxCounterTv.setText("" + mCounterTx);
+						mScrollViewConsoleOutput.smoothScrollTo(0,
+								mValueConsoleOutputTv.getBottom());
+					};
+				});
 			}
 		});
 	}
@@ -189,7 +160,7 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 	{
 		super.onPause();
 
-		if (isInNewScreen == true || isPrefRunInBackground == true)
+		if (isInNewScreen || isPrefRunInBackground)
 		{
 			// let the app run normally in the background
 		}
@@ -233,7 +204,7 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 	@Override
 	public void onBackPressed()
 	{
-		if (mSppManager != null && mSppManager.isConnected() == true)
+		if (mSppManager != null && mSppManager.isConnected())
 		{
 			mSppManager.disconnect();
 		}
@@ -259,7 +230,7 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 		{
 
 		case android.R.id.home:
-			if (mSppManager != null && mSppManager.isConnected() == true)
+			if (mSppManager != null && mSppManager.isConnected())
 			{
 				mSppManager.disconnect();
 				invalidateOptionsMenu();
@@ -298,20 +269,20 @@ public class SPPActivity extends BaseActivity implements SPPManagerUiCallback
 					mBtnScan.setText(R.string.btn_scan);
 					mBtnSend.setEnabled(false);
 				}
-				else if (mSppManager.isConnected() == false
-						&& mSppManager.isConnecting() == false)
+				else if (!mSppManager.isConnected()
+						&& !mSppManager.isConnecting())
 				{
 					mBtnScan.setText(R.string.btn_scan);
 					mBtnSend.setEnabled(false);
 				}
-				else if (mSppManager.isConnected() == false
-						&& mSppManager.isConnecting() == true)
+				else if (!mSppManager.isConnected()
+						&& mSppManager.isConnecting())
 				{
 					mBtnScan.setText(R.string.btn_connecting);
 					mBtnSend.setEnabled(false);
 				}
-				else if (mSppManager.isConnected() == true
-						&& mSppManager.isConnecting() == false)
+				else if (mSppManager.isConnected()
+						&& !mSppManager.isConnecting())
 				{
 					mBtnScan.setText(R.string.btn_disconnect);
 					mBtnSend.setEnabled(true);

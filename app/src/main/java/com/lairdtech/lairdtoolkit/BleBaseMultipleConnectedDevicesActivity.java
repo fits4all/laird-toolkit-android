@@ -46,14 +46,12 @@ public abstract class BleBaseMultipleConnectedDevicesActivity extends
 	{
 		super.bindViews();
 
-		mLvConnectedDevices = (ListView) findViewById(R.id.lvConnectedDevices);
-
-		mValueName = (TextView) findViewById(R.id.valueDeviceName);
-		mValueDeviceAddress = (TextView) findViewById(R.id.valueDeviceAddress);
-		mValueRSSI = (TextView) findViewById(R.id.valueDeviceRssi);
-		mValueBattery = (TextView) findViewById(R.id.valueDeviceBattery);
-
-		mBtnScan = (Button) findViewById(R.id.btnScan);
+		mLvConnectedDevices = findViewById(R.id.lvConnectedDevices);
+		mValueName = findViewById(R.id.valueDeviceName);
+		mValueDeviceAddress = findViewById(R.id.valueDeviceAddress);
+		mValueRSSI = findViewById(R.id.valueDeviceRssi);
+		mValueBattery = findViewById(R.id.valueDeviceBattery);
+		mBtnScan = findViewById(R.id.btnScan);
 	}
 
 	@Override
@@ -76,7 +74,7 @@ public abstract class BleBaseMultipleConnectedDevicesActivity extends
 				{
 				case R.id.btnScan:
 				{
-					if (mBluetoothAdapterWrapper.isEnabled() == false)
+					if (!mBluetoothAdapterWrapper.isEnabled())
 					{
 						Log.e(TAG, "Bluetooth must be on to start scanning.");
 						Toast.makeText(mActivity,
@@ -87,7 +85,7 @@ public abstract class BleBaseMultipleConnectedDevicesActivity extends
 					else
 					{
 						// do a scan operation
-						if (isPrefPeriodicalScan == true)
+						if (isPrefPeriodicalScan)
 						{
 							mBluetoothAdapterWrapper.startBleScanPeriodically();
 						}
@@ -146,12 +144,9 @@ public abstract class BleBaseMultipleConnectedDevicesActivity extends
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		switch (item.getItemId())
-		{
-		case android.R.id.home:
+		if (item.getItemId() == android.R.id.home) {
 			mListConnectedDevicesHandler.disconnectFromDevices();
 			finish();
-			break;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -162,7 +157,7 @@ public abstract class BleBaseMultipleConnectedDevicesActivity extends
 	{
 		super.onPause();
 
-		if (isInNewScreen == true || isPrefRunInBackground == true)
+		if (isInNewScreen || isPrefRunInBackground)
 		{
 			// let the app run normally in the background
 		}

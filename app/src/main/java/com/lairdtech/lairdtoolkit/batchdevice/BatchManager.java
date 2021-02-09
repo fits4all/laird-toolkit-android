@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.batchdevice;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -48,8 +40,6 @@ public class BatchManager extends FileAndFifoAndVspManager
 
 	/**
 	 * change this manager from UPLOADING state to STOPPED state
-	 * 
-	 * @return true if changed to WAITING state or false if no change was made
 	 */
 	public void stopFileUploading()
 	{
@@ -69,8 +59,7 @@ public class BatchManager extends FileAndFifoAndVspManager
 	{
 		if (getBluetoothGatt() == null)
 			return null;
-		String content = mFileWrapper.readUntilASpecificChar(readUntil);
-		return content;
+		return mFileWrapper.readUntilASpecificChar(readUntil);
 	}
 
 	@Override
@@ -99,25 +88,19 @@ public class BatchManager extends FileAndFifoAndVspManager
 					"Data received: "
 							+ StringEscapeUtils.escapeJava(mRxDest.toString()));
 
-			switch (mFifoAndVspManagerState)
-			{
-			case UPLOADING:
-				// success code received from the remote device
-				if (mRxDest.toString().contains("\n00\r"))
-				{
+			if (mFifoAndVspManagerState == FifoAndVspManagerState.UPLOADING) {// success code received from the remote device
+				if (mRxDest.toString().contains("\n00\r")) {
 					mBatchManagerUiCallback.onUiReceiveSuccessData(mRxDest
 							.toString());
 
 					mRxDest.delete(0, mRxDest.length());
 
-					if (isBufferSpaceAvailable() == true)
-					{
+					if (isBufferSpaceAvailable()) {
 						uploadNextData();
 					}
 				}
 				// error code received from remote device
-				else if (mRxDest.toString().contains("\n01\t"))
-				{
+				else if (mRxDest.toString().contains("\n01\t")) {
 					String errorCode = mRxDest.toString();
 
 					/*
@@ -130,10 +113,6 @@ public class BatchManager extends FileAndFifoAndVspManager
 
 					onUploadFailed(errorCode);
 				}
-				break;
-
-			default:
-				break;
 			}
 		}
 	}
@@ -156,7 +135,7 @@ public class BatchManager extends FileAndFifoAndVspManager
 			{
 				onUploaded();
 			}
-			else if (mFileWrapper.getIsEOF() == true
+			else if (mFileWrapper.getIsEOF()
 					&& !(content.contains("\r")))
 			{
 				/*

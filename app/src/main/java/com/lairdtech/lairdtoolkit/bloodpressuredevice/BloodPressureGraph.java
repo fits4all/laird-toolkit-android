@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.bloodpressuredevice;
 
 import org.achartengine.model.XYSeries;
@@ -40,13 +32,13 @@ public class BloodPressureGraph extends BaseGraph
 	{
 		super.initChart();
 		mSystolicLineXYSeries = new XYSeries("Systolic");
-		mDataset.addSeries(mSystolicLineXYSeries);
+		mDataSet.addSeries(mSystolicLineXYSeries);
 
 		mDystolicLineXYSeries = new XYSeries("Dystolic");
-		mDataset.addSeries(mDystolicLineXYSeries);
+		mDataSet.addSeries(mDystolicLineXYSeries);
 
 		mArterialPressureLineXYSeries = new XYSeries("Arterial Pressure");
-		mDataset.addSeries(mArterialPressureLineXYSeries);
+		mDataSet.addSeries(mArterialPressureLineXYSeries);
 
 		mRenderer.setYTitle("Blood Pressure");
 		mRenderer.setYAxisMax(210);

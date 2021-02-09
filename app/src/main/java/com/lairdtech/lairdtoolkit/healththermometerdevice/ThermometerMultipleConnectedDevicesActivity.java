@@ -56,7 +56,7 @@ public class ThermometerMultipleConnectedDevicesActivity extends
 		boolean isDeviceAddedToTheList = mListConnectedDevicesHandler
 				.addDevice(thermometerManager);
 
-		if (isDeviceAddedToTheList == true)
+		if (isDeviceAddedToTheList)
 		{
 			thermometerManager.connect(device, false);
 			invalidateUiListConnectedDevicesHandler();
@@ -78,7 +78,7 @@ public class ThermometerMultipleConnectedDevicesActivity extends
 	@Override
 	protected void toggleHint()
 	{
-		TextView hintTv = (TextView) findViewById(R.id.hintTv);
+		TextView hintTv = findViewById(R.id.hintTv);
 		hintTv.setText(R.string.about_multiple_thermometer);
 
 		if (mListConnectedDevicesHandler == null

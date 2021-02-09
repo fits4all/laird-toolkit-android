@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.heartratedevice;
 
 import java.util.UUID;
@@ -83,7 +75,7 @@ public class HeartRateManager extends BleBaseDeviceManager
 	@Override
 	protected void onCharsFoundCompleted()
 	{
-		if (isHrMeasurementFound == false)
+		if (!isHrMeasurementFound)
 		{
 			mActivity.runOnUiThread(new Runnable()
 			{
@@ -115,13 +107,9 @@ public class HeartRateManager extends BleBaseDeviceManager
 
 		UUID characteristicUUID = characteristic.getUuid();
 
-		switch (status)
-		{
-		case BluetoothGatt.GATT_SUCCESS:
-
+		if (status == BluetoothGatt.GATT_SUCCESS) {
 			if (DefinedBleUUIDs.Characteristic.BODY_SENSOR_LOCATION
-					.equals(characteristicUUID))
-			{
+					.equals(characteristicUUID)) {
 				int result = characteristic.getIntValue(
 						BluetoothGattCharacteristic.FORMAT_UINT8, 0);
 
@@ -130,19 +118,13 @@ public class HeartRateManager extends BleBaseDeviceManager
 				mHrActivityUiCallback
 						.onUiBodySensorLocation(mValueBodySensorLocation);
 			}
-
-			break;
-
-		default:
-			// failed for reasons other than requiring bonding etc.
+		} else {// failed for reasons other than requiring bonding etc.
 			if (DefinedBleUUIDs.Characteristic.BODY_SENSOR_LOCATION
-					.equals(characteristicUUID))
-			{
+					.equals(characteristicUUID)) {
 				mValueBodySensorLocation = "N/A";
 				mHrActivityUiCallback
 						.onUiBodySensorLocation(mValueBodySensorLocation);
 			}
-			break;
 		}
 	}
 

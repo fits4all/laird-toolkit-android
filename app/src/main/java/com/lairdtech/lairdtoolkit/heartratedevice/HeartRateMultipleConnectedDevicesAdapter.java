@@ -55,7 +55,7 @@ public class HeartRateMultipleConnectedDevicesAdapter extends
 		return convertView;
 	}
 
-	private class FieldReferences
+	private static class FieldReferences
 	{
 		TextView valueDeviceName;
 		TextView valueDeviceRssi;
@@ -67,17 +67,17 @@ public class HeartRateMultipleConnectedDevicesAdapter extends
 
 	private void bindViews(FieldReferences fields, View convertView)
 	{
-		fields.valueDeviceName = (TextView) convertView
+		fields.valueDeviceName = convertView
 				.findViewById(R.id.valueDeviceName);
-		fields.valueDeviceRssi = (TextView) convertView
+		fields.valueDeviceRssi = convertView
 				.findViewById(R.id.valueDeviceRssi);
-		fields.valueDeviceAddress = (TextView) convertView
+		fields.valueDeviceAddress = convertView
 				.findViewById(R.id.valueDeviceAddress);
-		fields.valueDeviceBattery = (TextView) convertView
+		fields.valueDeviceBattery = convertView
 				.findViewById(R.id.valueDeviceBattery);
-		fields.valueBodySensor = (TextView) convertView
+		fields.valueBodySensor = convertView
 				.findViewById(R.id.valueBodySensor);
-		fields.valueHRM = (TextView) convertView.findViewById(R.id.valueHRM);
+		fields.valueHRM = convertView.findViewById(R.id.valueHRM);
 	}
 
 	private void setGenericViews(final FieldReferences fields,

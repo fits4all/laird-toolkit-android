@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.healththermometerdevice;
 
 import java.util.UUID;
@@ -70,7 +62,7 @@ public class ThermometerManager extends BleBaseDeviceManager
 	@Override
 	protected void onCharsFoundCompleted()
 	{
-		if (isTempMeasurementFound == false)
+		if (!isTempMeasurementFound)
 		{
 			mActivity.runOnUiThread(new Runnable()
 			{

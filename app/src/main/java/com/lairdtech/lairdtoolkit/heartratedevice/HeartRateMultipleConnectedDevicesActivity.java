@@ -56,7 +56,7 @@ public class HeartRateMultipleConnectedDevicesActivity extends
 		boolean isDeviceAddedToTheList = mListConnectedDevicesHandler
 				.addDevice(heartRateManager);
 
-		if (isDeviceAddedToTheList == true)
+		if (isDeviceAddedToTheList)
 		{
 			heartRateManager.connect(device, false);
 			invalidateUiListConnectedDevicesHandler();

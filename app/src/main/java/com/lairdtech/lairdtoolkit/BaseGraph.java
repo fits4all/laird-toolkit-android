@@ -1,10 +1,4 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
+
 
 package com.lairdtech.lairdtoolkit;
 
@@ -38,7 +32,7 @@ public abstract class BaseGraph
 
 	private Context context;
 	private GraphicalView mChart;
-	protected XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
+	protected XYMultipleSeriesDataset mDataSet = new XYMultipleSeriesDataset();
 	protected XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 	private long mStartTime = 0;
 	private long mEndTime = 0;
@@ -105,7 +99,7 @@ public abstract class BaseGraph
 		LinearLayout chartLayout = (LinearLayout) view
 				.findViewById(R.id.chartLayout);
 
-		mChart = ChartFactory.getCubeLineChartView(context, mDataset,
+		mChart = ChartFactory.getCubeLineChartView(context, mDataSet,
 				mRenderer, 0.2f);
 		chartLayout.addView(mChart);
 	}
@@ -177,7 +171,7 @@ public abstract class BaseGraph
 		if (!((max == Double.MAX_VALUE || max == -Double.MAX_VALUE) && (min == Double.MAX_VALUE || min == -Double.MAX_VALUE)))
 		{
 
-			double newMax = mDataset.getSeriesAt(0).getMaxX(); // new max is the
+			double newMax = mDataSet.getSeriesAt(0).getMaxX(); // new max is the
 																// latest value
 																// from our
 																// series
@@ -208,7 +202,7 @@ public abstract class BaseGraph
 		// Check if the user scrolled/zoomed/panned the graph or if it's on
 		// 'auto'
 		if (!((max == Double.MAX_VALUE || max == -Double.MAX_VALUE) && (min == Double.MAX_VALUE || min == -Double.MAX_VALUE))) {
-			double newMax = mDataset.getSeriesAt(0).getMaxY(); // new max is the
+			double newMax = mDataSet.getSeriesAt(0).getMaxY(); // new max is the
 			// latest value
 			// from our
 			// series
@@ -218,9 +212,9 @@ public abstract class BaseGraph
 			// check which graph line has the biggest value
 			// in this way we can know the greatest number and display it on the
 			// graph Y axis
-			for (int j = 0; j < mDataset.getSeriesCount(); j++) {
-				if (newMax < mDataset.getSeriesAt(j).getMaxY()) {
-					newMax = mDataset.getSeriesAt(j).getMaxY();
+			for (int j = 0; j < mDataSet.getSeriesCount(); j++) {
+				if (newMax < mDataSet.getSeriesAt(j).getMaxY()) {
+					newMax = mDataSet.getSeriesAt(j).getMaxY();
 				}
 			}
 

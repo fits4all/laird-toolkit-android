@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.batchdevice;
 
 import android.app.Activity;
@@ -92,19 +84,17 @@ public class BatchActivity extends BleBaseActivity implements
 	{
 		super.bindViews();
 
-		mBtnFileSelect = (Button) findViewById(R.id.btnFileSelect);
-		mBtnFileSend = (Button) findViewById(R.id.btnFileSend);
-		mBtnFileStopSending = (Button) findViewById(R.id.btnFileStopSending);
-
-		mValueFileNameTv = (TextView) findViewById(R.id.valueFileNameTv);
-		mValueValidDeviceTv = (TextView) findViewById(R.id.valueValidDeviceTv);
-		mValueStatusTv = (TextView) findViewById(R.id.valueStatusTv);
-		mValueErrorsTv = (TextView) findViewById(R.id.valueErrorsTv);
-		mValueDataSendTv = (TextView) findViewById(R.id.valueDataSendTv);
-		mScrollViewDataSend = (ScrollView) findViewById(R.id.scrollViewDataSend);
-
-		mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-		mTvProgressBarProgress = (TextView) findViewById(R.id.progressBarProgressTv);
+		mBtnFileSelect = findViewById(R.id.btnFileSelect);
+		mBtnFileSend = findViewById(R.id.btnFileSend);
+		mBtnFileStopSending = findViewById(R.id.btnFileStopSending);
+		mValueFileNameTv = findViewById(R.id.valueFileNameTv);
+		mValueValidDeviceTv = findViewById(R.id.valueValidDeviceTv);
+		mValueStatusTv = findViewById(R.id.valueStatusTv);
+		mValueErrorsTv = findViewById(R.id.valueErrorsTv);
+		mValueDataSendTv = findViewById(R.id.valueDataSendTv);
+		mScrollViewDataSend = findViewById(R.id.scrollViewDataSend);
+		mProgressBar = findViewById(R.id.progressBar);
+		mTvProgressBarProgress = findViewById(R.id.progressBarProgressTv);
 	}
 
 	@Override

@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- *******************************************************************************/
-
 package com.lairdtech.bt.ble;
 
 import java.util.HashMap;
@@ -40,8 +32,7 @@ public abstract class BleNamesResolver {
 
     static public String resolveValueTypeDescription(final int format)
     {
-        Integer tmp = Integer.valueOf(format);
-        return mValueFormats.get(tmp, "Unknown Format");
+        return mValueFormats.get(format, "Unknown Format");
     }
     
     static public String resolveCharacteristicName(final String uuid)

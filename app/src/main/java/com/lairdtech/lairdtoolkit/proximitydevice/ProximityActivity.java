@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.proximitydevice;
 
 import java.math.BigInteger;
@@ -61,10 +53,10 @@ public class ProximityActivity extends BleBaseActivity implements
 	{
 		super.bindViews();
 		bindCommonViews();
-		mValueTxPower = (TextView) findViewById(R.id.valueTxPower);
-		radioGroupLinkLoss = (RadioGroup) findViewById(R.id.radioGroupLinkLoss);
-		radioGroupImmediateAlert = (RadioGroup) findViewById(R.id.radioGroupImmediateAlert);
-		btnImmediateAlert = (Button) findViewById(R.id.btnImmediateAlert);
+		mValueTxPower = findViewById(R.id.valueTxPower);
+		radioGroupLinkLoss = findViewById(R.id.radioGroupLinkLoss);
+		radioGroupImmediateAlert = findViewById(R.id.radioGroupImmediateAlert);
+		btnImmediateAlert = findViewById(R.id.btnImmediateAlert);
 	};
 
 	@Override
@@ -79,32 +71,22 @@ public class ProximityActivity extends BleBaseActivity implements
 	public void onClick(View view)
 	{
 		int btnId = view.getId();
-		switch (btnId)
-		{
-		case R.id.btnImmediateAlert:
+		if (btnId == R.id.btnImmediateAlert) {
 			int checkedRadioBtn = radioGroupImmediateAlert
 					.getCheckedRadioButtonId();
 
-			if (checkedRadioBtn == R.id.radioImmediateAlertLow)
-			{
+			if (checkedRadioBtn == R.id.radioImmediateAlertLow) {
 				// low value chosen for Immediate Alert
 				mProximityManager.writeAlertCharValue("0x00", 1);
-			}
-			else if (checkedRadioBtn == R.id.radioImmediateAlertMedium)
-			{
+			} else if (checkedRadioBtn == R.id.radioImmediateAlertMedium) {
 				// medium value chosen for Immediate Alert
 				mProximityManager.writeAlertCharValue("0x01", 1);
-			}
-			else if (checkedRadioBtn == R.id.radioImmediateAlertHigh)
-			{
+			} else if (checkedRadioBtn == R.id.radioImmediateAlertHigh) {
 				// high value chosen for Immediate Alert
 				mProximityManager.writeAlertCharValue("0x02", 1);
-			}
-			else
-			{
+			} else {
 				// no radio button is chosen yet
 			}
-			break;
 		}
 	}
 
@@ -118,29 +100,19 @@ public class ProximityActivity extends BleBaseActivity implements
 		radioButton = (RadioButton) group.findViewById(checkedId);
 		radioButtonId = radioButton.getId();
 
-		switch (radioGroupId)
-		{
-		case R.id.radioGroupLinkLoss:
-			if (radioButtonId == R.id.radioLinkLossAlertLow)
-			{
+		if (radioGroupId == R.id.radioGroupLinkLoss) {
+			if (radioButtonId == R.id.radioLinkLossAlertLow) {
 				// low value chosen for Link loss
 				mProximityManager.writeAlertCharValue("0x00", 0);
-			}
-			else if (radioButtonId == R.id.radioLinkLossAlertMedium)
-			{
+			} else if (radioButtonId == R.id.radioLinkLossAlertMedium) {
 				// medium value chosen for Link loss
 				mProximityManager.writeAlertCharValue("0x01", 0);
-			}
-			else if (radioButtonId == R.id.radioLinkLossAlertHigh)
-			{
+			} else if (radioButtonId == R.id.radioLinkLossAlertHigh) {
 				// high value chosen for Link loss
 				mProximityManager.writeAlertCharValue("0x02", 0);
-			}
-			else
-			{
+			} else {
 				// no radio button is checked from this radio group
 			}
-			break;
 		}
 	}
 

@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- *******************************************************************************/
-
 package com.lairdtech.bt.classic;
 
 import java.io.ByteArrayInputStream;
@@ -46,14 +38,10 @@ public abstract class BaseBtClassicDeviceManager
 	private OutputStream mOutputStream;
 
 	private UUID mUuidToConnectTo;
-	/*
-	 * defines how many bytes to be read from the connected remote device
-	 * whenever data is received, default value is 1024 bytes
-	 */
-	private final int DEFAULT_TOTAL_BYTES_TO_READ_FROM_REMOTE_DEVICE = 1024;
 
 	/**
 	 * @param activity
+	 * 		      activity object
 	 * @param bluetoothDevice
 	 *            the bluetooth device to associate this instance with
 	 * @param uuidToConnectTo
@@ -75,6 +63,7 @@ public abstract class BaseBtClassicDeviceManager
 
 	/**
 	 * @param activity
+	 *            activity object
 	 * @param uuidToConnectTo
 	 *            the UUID to connect this remote device socket with
 	 */
@@ -144,7 +133,7 @@ public abstract class BaseBtClassicDeviceManager
 		if (mConnectedThread == null)
 			throw new NullPointerException("Streams are not initialised!");
 
-		if (isConnected() == true)
+		if (isConnected())
 		{
 			mConnectedThread
 					.startDataListeningFromRemoteDevice(totalBytesToReadFromRemoteDevice);
@@ -260,7 +249,6 @@ public abstract class BaseBtClassicDeviceManager
 				{
 					onBtClassicConnectFailed();
 				}
-				return;
 			}
 		}
 	}
@@ -284,7 +272,7 @@ public abstract class BaseBtClassicDeviceManager
 				mInputStream = mBluetoothSocket.getInputStream();
 				mOutputStream = mBluetoothSocket.getOutputStream();
 			}
-			catch (IOException e)
+			catch (IOException ignored)
 			{}
 		}
 
@@ -355,7 +343,7 @@ public abstract class BaseBtClassicDeviceManager
 		/**
 		 * starts listening for data from the remote device. whenever data is
 		 * received the callback
-		 * {@link BtClassicDeviceBase#onDataReadFromRemoteDevice(byte[])} is
+		 * {@link BaseBtClassicDeviceManager#onBtClassicDataRead(byte[])} is
 		 * called with the data received.
 		 * 
 		 * if the totalBytesToReadFromRemoteDevice parameter is <=0 then the
@@ -370,6 +358,11 @@ public abstract class BaseBtClassicDeviceManager
 
 			if (totalBytesToReadFromRemoteDevice <= 0)
 			{
+				/*
+				 * defines how many bytes to be read from the connected remote device
+				 * whenever data is received, default value is 1024 bytes
+				 */
+				int DEFAULT_TOTAL_BYTES_TO_READ_FROM_REMOTE_DEVICE = 1024;
 				mDataReadBuffer = new byte[DEFAULT_TOTAL_BYTES_TO_READ_FROM_REMOTE_DEVICE];
 			}
 			else

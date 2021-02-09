@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.bt.ble.vsp;
 
 import java.util.UUID;
@@ -310,16 +302,15 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 			switch (newState)
 			{
 			case BluetoothProfile.STATE_CONNECTING:
-
+				// Might be used in the future.
 				break;
 
 			case BluetoothProfile.STATE_CONNECTED:
-
 				mFifoAndVspManagerState = FifoAndVspManagerState.WAITING;
 				break;
 
 			case BluetoothProfile.STATE_DISCONNECTING:
-
+				// Might be used in the future.
 				break;
 
 			case BluetoothProfile.STATE_DISCONNECTED:
@@ -375,7 +366,7 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 	{
 		super.onCharsFoundCompleted();
 
-		if (mIsValidVspDevice == false)
+		if (!mIsValidVspDevice)
 		{
 			mActivity.runOnUiThread(new Runnable()
 			{
@@ -414,13 +405,9 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 		UUID serviceUUID = characteristic.getService().getUuid();
 		UUID charUUID = characteristic.getUuid();
 
-		switch (status)
-		{
-		case BluetoothGatt.GATT_SUCCESS:
-			if (VSP_SERVICE.equals(serviceUUID))
-			{
-				if (VSP_CHAR_RX.equals(charUUID))
-				{
+		if (status == BluetoothGatt.GATT_SUCCESS) {
+			if (VSP_SERVICE.equals(serviceUUID)) {
+				if (VSP_CHAR_RX.equals(charUUID)) {
 					Log.i(TAG, "Data was sent successfully");
 
 					// keep count of total bytes send to the remote BLE device
@@ -428,7 +415,6 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 					onVspSendDataSuccess(gatt, characteristic);
 				}
 			}
-			break;
 		}
 	}
 
@@ -464,14 +450,7 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 				int isBufferSpaceAvailableNewState = ch.getIntValue(
 						BluetoothGattCharacteristic.FORMAT_UINT8, 0);
 
-				if (isBufferSpaceAvailableNewState == 1)
-				{
-					mIsBufferSpaceAvailableNewState = true;
-				}
-				else
-				{
-					mIsBufferSpaceAvailableNewState = false;
-				}
+				mIsBufferSpaceAvailableNewState = isBufferSpaceAvailableNewState == 1;
 
 				Log.i(TAG, "Was the buffer full previously: "
 						+ isBufferSpaceAvailableOldState);
@@ -570,21 +549,12 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 			@Override
 			public void run()
 			{
-				switch (mFifoAndVspManagerState)
-				{
-				case UPLOADING:
-					/*
-					 * what to do after the data was send successfully
-					 */
-					if (isBufferSpaceAvailable() == true)
-					{
+				if (mFifoAndVspManagerState == FifoAndVspManagerState.UPLOADING) {/*
+				 * what to do after the data was send successfully
+				 */
+					if (isBufferSpaceAvailable()) {
 						uploadNextData();
 					}
-					break;
-
-				default:
-					break;
-
 				}
 			}
 		}, SEND_DATA_TO_REMOTE_DEVICE_DELAY);
@@ -633,23 +603,15 @@ public class VirtualSerialPortDevice extends BleBaseDeviceManager
 			final boolean isBufferSpaceAvailableNewState)
 	{
 
-		switch (mFifoAndVspManagerState)
-		{
-		case UPLOADING:
-			/*
-			 * callback for what to do when data was send successfully from the
-			 * android device and when the module buffer was full and now it has
-			 * been cleared, which means it now has available space
-			 */
-			if (isBufferSpaceAvailableOldState == false
-					&& isBufferSpaceAvailableNewState == true)
-			{
+		if (mFifoAndVspManagerState == FifoAndVspManagerState.UPLOADING) {/*
+		 * callback for what to do when data was send successfully from the
+		 * android device and when the module buffer was full and now it has
+		 * been cleared, which means it now has available space
+		 */
+			if (!isBufferSpaceAvailableOldState
+					&& isBufferSpaceAvailableNewState) {
 				uploadNextData();
 			}
-			break;
-
-		default:
-			break;
 		}
 	}
 

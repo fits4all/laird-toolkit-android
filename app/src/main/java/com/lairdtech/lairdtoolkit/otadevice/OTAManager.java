@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.otadevice;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -136,18 +128,13 @@ public class OTAManager extends FileAndFifoAndVspManager
 					"Data received: "
 							+ StringEscapeUtils.escapeJava(mRxDest.toString()));
 
-			switch (mFifoAndVspManagerState)
-			{
-			case UPLOADING:
-				// success code received from the remote device
-				if (mRxDest.toString().contains("\n00\r"))
-				{
+			if (mFifoAndVspManagerState == FifoAndVspManagerState.UPLOADING) {// success code received from the remote device
+				if (mRxDest.toString().contains("\n00\r")) {
 					mRxDest.delete(0, mRxDest.length());
 
 				}
 				// error code received from remote device
-				else if (mRxDest.toString().contains("\n01\t"))
-				{
+				else if (mRxDest.toString().contains("\n01\t")) {
 					String errorCode = mRxDest.toString();
 					mRxDest.delete(0, mRxDest.length());
 					/*
@@ -159,10 +146,6 @@ public class OTAManager extends FileAndFifoAndVspManager
 
 					onUploadFailed(errorCode);
 				}
-				break;
-
-			default:
-				break;
 			}
 		}
 	}

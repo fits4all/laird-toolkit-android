@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.serialdevice;
 
 import android.app.Activity;
@@ -37,20 +29,12 @@ public class SerialManager extends VirtualSerialPortDevice
 			@Override
 			public void run()
 			{
-				switch (mFifoAndVspManagerState)
-				{
-				case UPLOADING:
-					/*
-					 * what to do after the data was send successfully
-					 */
-					if (isBufferSpaceAvailable() == true)
-					{
+				if (mFifoAndVspManagerState == FifoAndVspManagerState.UPLOADING) {/*
+				 * what to do after the data was send successfully
+				 */
+					if (isBufferSpaceAvailable()) {
 						uploadNextDataFromFifoToRemoteDevice();
 					}
-					break;
-
-				default:
-					break;
 				}
 			}
 		}, SEND_DATA_TO_REMOTE_DEVICE_DELAY);
@@ -80,24 +64,15 @@ public class SerialManager extends VirtualSerialPortDevice
 			boolean isBufferSpaceAvailableOldState,
 			boolean isBufferSpaceAvailableNewState)
 	{
-		switch (mFifoAndVspManagerState)
-		{
-		case UPLOADING:
-			/*
-			 * callback for what to do when data was send successfully from the
-			 * android device and when the module buffer was full and now it has
-			 * been cleared, which means it now has available space
-			 */
-			if (isBufferSpaceAvailableOldState == false
-					&& isBufferSpaceAvailableNewState == true)
-			{
+		if (mFifoAndVspManagerState == FifoAndVspManagerState.UPLOADING) {/*
+		 * callback for what to do when data was send successfully from the
+		 * android device and when the module buffer was full and now it has
+		 * been cleared, which means it now has available space
+		 */
+			if (!isBufferSpaceAvailableOldState
+					&& isBufferSpaceAvailableNewState) {
 				uploadNextDataFromFifoToRemoteDevice();
 			}
-			break;
-
-		default:
-			break;
-
 		}
 	}
 

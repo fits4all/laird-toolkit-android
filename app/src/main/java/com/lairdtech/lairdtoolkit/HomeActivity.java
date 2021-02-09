@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit;
 
 import java.util.ArrayList;
@@ -30,12 +22,11 @@ import com.lairdtech.lairdtoolkit.serialdevice.SerialActivity;
 public class HomeActivity extends BaseActivity
 {
 	private GridView mIconsGrid;
-	private List<String> mIconNames = new ArrayList<String>();
-	private List<Integer> mIconImages = new ArrayList<Integer>();;
+	private List<String> mIconNames = new ArrayList<>();
+	private List<Integer> mIconImages = new ArrayList<>();;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.activity_home);
 
 		initialiseDialogAbout(getResources()
@@ -46,7 +37,7 @@ public class HomeActivity extends BaseActivity
 	public void bindViews()
 	{
 		super.bindViews();
-		mIconsGrid = (GridView) findViewById(R.id.grid);
+		mIconsGrid = findViewById(R.id.grid);
 	}
 
 	@Override

@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-Copyright (c) 2014 Laird Technologies. All Rights Reserved.
-  
-The information contained herein is property of Laird Technologies.
-Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
-This heading must NOT be removed from the file.
--->
+
 
 <resources>
 
@@ -62,7 +56,8 @@ This heading must NOT be removed from the file.
         &lt;a href="http://www.lairdtech.com/Products/Embedded-Wireless-Solutions/#.U_3edPldVMU">www.lairdtech.com/wireless&lt;/a>
         &lt;br/>
         &lt;br/>
-        This application is for evaluation purposes only and no representation or warranty is given nor is any to be implied</string>
+        This application is for evaluation purposes only and no representation or warranty is given nor is any to be implied
+</string>
 
     <!-- heart rate -->
     <string name="label_heart">HRM</string>
@@ -75,7 +70,8 @@ This heading must NOT be removed from the file.
         &lt;br/>
         Click the icon on the top right to connect to multiple BLE heart rate devices</string>
     <string name="about_multiple_heart_rate">
-        Scan and connect to multiple Laird BLE HR devices.	</string>
+        Scan and connect to multiple Laird BLE HR devices.
+	</string>
     <string name="action_multiple_heartrate">Multiple Heart rates</string>
 
     <!-- Thermometer -->
@@ -85,9 +81,11 @@ This heading must NOT be removed from the file.
         Once connected the sensor data will be displayed and plotted on the graph.
         &lt;br/>
         &lt;br/>
-        Click the icon on the top right to connect to multiple BLE thermometer devices</string>
+        Click the icon on the top right to connect to multiple BLE thermometer devices
+</string>
     <string name="about_multiple_thermometer">
-         Scan and connect to multiple Laird BLE thermometer devices.	</string>
+         Scan and connect to multiple Laird BLE thermometer devices.
+	</string>
     <string name="action_multiple_thermometer">Multiple Health Thermometers</string>
 
     <!-- blood pressure -->
@@ -99,7 +97,8 @@ This heading must NOT be removed from the file.
         Once connected the sensor data will be displayed and plotted on the graph.
         &lt;br/>
         &lt;br/>
-        Click the icon on the top right to connect to multiple BLE blood pressure devices</string>
+        Click the icon on the top right to connect to multiple BLE blood pressure devices
+</string>
     <string name="about_multiple_bloodpressure">
         Scan and connect to multiple Laird BLE blood pressure devices.
 	</string>
@@ -128,7 +127,8 @@ This heading must NOT be removed from the file.
     <string name="pref_clear_text_after_sending">Clear text after sending</string>
     <string name="about_serial">        The Serial (VSP) functionality allows text data to be sent from an Android
         device to a Laird BLE module that is in VSP mode and back again.
-        This application can be used to remotely control the device through the use of AT commands.</string>
+        This application can be used to remotely control the device through the use of AT commands.
+</string>
 
     <!-- OTA -->
     <string name="label_ota">OTA</string>
@@ -150,7 +150,8 @@ This heading must NOT be removed from the file.
         Remove the cables by wirelessly programming the Laird BLE module,
         Bluetooth Low Energy module with the new smartBASIC programming language.
         &lt;br/> &lt;br/>
-        &lt;b>Note:&lt;/b> The module needs to be in VSP command mode to work.</string>
+        &lt;b>Note:&lt;/b> The module needs to be in VSP command mode to work.
+</string>
 
     <!-- Batch -->
     <string name="label_batch">Batch</string>
@@ -160,11 +161,13 @@ This heading must NOT be removed from the file.
     <string name="about_batch">        The Batch functionality enables you to send scripts wirelessly over the air to the Laird BLE module.
         These scripts can be custom-made and use AT commands to control the module remotely.
         &lt;br/> &lt;br/>
-        &lt;b>Note:&lt;/b> The module needs to be in VSP command mode to work.</string>
+        &lt;b>Note:&lt;/b> The module needs to be in VSP command mode to work.
+</string>
 
     <!-- SPP -->
     <string name="label_spp">SPP</string>
     <string name="about_spp">        The SPP functionality allows text data to be sent using BT Classic from an Android
-        device to a Laird BT900 module that is in SPP mode and back again.</string>
+        device to a Laird BT900 module that is in SPP mode and back again.
+</string>
 
 </resources>

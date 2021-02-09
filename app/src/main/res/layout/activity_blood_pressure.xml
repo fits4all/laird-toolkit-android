@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Copyright (c) 2014 Laird Technologies. All Rights Reserved.
-  
-The information contained herein is property of Laird Technologies.
-Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
-This heading must NOT be removed from the file.
--->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +7,7 @@ This heading must NOT be removed from the file.
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.lairdtech.lairdtoolkit.bloodpressure.BloodPressureActivity" >
+    tools:context="com.lairdtech.lairdtoolkit.bloodpressuredevice.BloodPressureActivity" >
 
     <RelativeLayout
         android:id="@+id/holderCommonConnectedDeviceDetails"

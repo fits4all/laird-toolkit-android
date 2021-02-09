@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-Copyright (c) 2014 Laird Technologies. All Rights Reserved.
-  
-The information contained herein is property of Laird Technologies.
-Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
-This heading must NOT be removed from the file.
--->
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/customParentLayout"
     android:layout_width="wrap_content"
@@ -20,7 +12,7 @@ This heading must NOT be removed from the file.
         android:adjustViewBounds="true"
         android:contentDescription="@string/descr_content_general"
         android:scaleType="fitXY"
-        android:src="@drawable/logo_laird"></ImageView>
+        android:src="@drawable/logo_laird" />
 
     <ScrollView
         android:id="@+id/scrollView1"

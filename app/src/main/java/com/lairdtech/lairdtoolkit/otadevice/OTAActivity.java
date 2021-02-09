@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.otadevice;
 
 import android.app.Activity;
@@ -90,18 +82,18 @@ public class OTAActivity extends BleBaseActivity implements
 	{
 		super.bindViews();
 
-		mBtnFileSelect = (Button) findViewById(R.id.btnFileSelect);
-		mBtnFileDownload = (Button) findViewById(R.id.btnFileDownload);
-		mBtnFileStopDownloading = (Button) findViewById(R.id.btnFileStopDownloading);
+		mBtnFileSelect = findViewById(R.id.btnFileSelect);
+		mBtnFileDownload = findViewById(R.id.btnFileDownload);
+		mBtnFileStopDownloading = findViewById(R.id.btnFileStopDownloading);
 
-		mValueFileNameTv = (TextView) findViewById(R.id.valueFileNameTv);
-		mValueSavedAsTv = (TextView) findViewById(R.id.valueSavedAsTv);
-		mValueValidDeviceTv = (TextView) findViewById(R.id.valueValidDeviceTv);
-		mValueStatusTv = (TextView) findViewById(R.id.valueStatusTv);
-		mValueErrorsTv = (TextView) findViewById(R.id.valueErrorsTv);
+		mValueFileNameTv = findViewById(R.id.valueFileNameTv);
+		mValueSavedAsTv = findViewById(R.id.valueSavedAsTv);
+		mValueValidDeviceTv = findViewById(R.id.valueValidDeviceTv);
+		mValueStatusTv = findViewById(R.id.valueStatusTv);
+		mValueErrorsTv = findViewById(R.id.valueErrorsTv);
 
-		mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-		mTvProgressBarProgress = (TextView) findViewById(R.id.progressBarProgressTv);
+		mProgressBar = findViewById(R.id.progressBar);
+		mTvProgressBarProgress = findViewById(R.id.progressBarProgressTv);
 	}
 
 	@Override
@@ -203,8 +195,7 @@ public class OTAActivity extends BleBaseActivity implements
 					mProgressBar.setMax((int) mOTAManager.getFileWrapper()
 							.getFileTotalSize());
 					mProgressBar.setProgress(0);
-					mTvProgressBarProgress.setText(0 + "/"
-							+ mProgressBar.getMax());
+					mTvProgressBarProgress.setText(0 + "/" + mProgressBar.getMax());
 
 					mValueFileNameTv.setText(mOTAManager.getFileWrapper()
 							.getFileName());
@@ -252,8 +243,7 @@ public class OTAActivity extends BleBaseActivity implements
 				if (mOTAManager.getFileState() == FileState.FILE_CHOSEN)
 				{
 					mProgressBar.setProgress(0);
-					mTvProgressBarProgress.setText(0 + "/"
-							+ mProgressBar.getMax());
+					mTvProgressBarProgress.setText(0 + "/" + mProgressBar.getMax());
 				}
 				mValueStatusTv.setText("");
 				mValueValidDeviceTv.setText("");

@@ -56,7 +56,7 @@ public class ThermometerMultipleConnectedDevicesAdapter extends
 		return convertView;
 	}
 
-	private class FieldReferences
+	private static class FieldReferences
 	{
 		TextView valueDeviceName;
 		TextView valueDeviceAddress;
@@ -67,16 +67,16 @@ public class ThermometerMultipleConnectedDevicesAdapter extends
 
 	private void bindViews(FieldReferences fields, View convertView)
 	{
-		fields.valueDeviceAddress = (TextView) convertView
+		fields.valueDeviceAddress = convertView
 				.findViewById(R.id.valueDeviceAddress);
-		fields.valueDeviceName = (TextView) convertView
+		fields.valueDeviceName = convertView
 				.findViewById(R.id.valueDeviceName);
-		fields.valueDeviceBattery = (TextView) convertView
+		fields.valueDeviceBattery = convertView
 				.findViewById(R.id.valueDeviceBattery);
 
-		fields.valueTempMeasurement = (TextView) convertView
+		fields.valueTempMeasurement = convertView
 				.findViewById(R.id.valueTempMeasurement);
-		fields.valueDeviceRssi = (TextView) convertView
+		fields.valueDeviceRssi = convertView
 				.findViewById(R.id.valueDeviceRssi);
 	}
 

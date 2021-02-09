@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.healththermometerdevice;
 
 import android.content.Intent;
@@ -53,15 +45,12 @@ public class ThermometerActivity extends BleBaseActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		switch (item.getItemId())
-		{
-		case R.id.action_multiple_thermometer:
+		if (item.getItemId() == R.id.action_multiple_thermometer) {
 			mThermometerManager.disconnect();
 
 			Intent intent = new Intent(this,
 					ThermometerMultipleConnectedDevicesActivity.class);
 			startActivity(intent);
-			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

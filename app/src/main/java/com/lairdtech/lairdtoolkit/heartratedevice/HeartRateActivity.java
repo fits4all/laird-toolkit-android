@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.heartratedevice;
 
 import android.content.Intent;
@@ -74,8 +66,8 @@ public class HeartRateActivity extends BleBaseActivity implements
 
 		bindCommonViews();
 
-		mValueHRM = (TextView) findViewById(R.id.valueHRM);
-		mValueBodySensorPosition = (TextView) findViewById(R.id.valueBodySensor);
+		mValueHRM = findViewById(R.id.valueHRM);
+		mValueBodySensorPosition = findViewById(R.id.valueBodySensor);
 		/*
 		 * getting the view of the whole activity, this is then passed to the
 		 * base graph class to find the view for displaying the graph

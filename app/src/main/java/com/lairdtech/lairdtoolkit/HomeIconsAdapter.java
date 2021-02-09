@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit;
 
 import java.util.List;
@@ -67,14 +59,14 @@ public class HomeIconsAdapter extends BaseAdapter
 		{
 			grid = new View(mContext);
 			grid = inflater.inflate(R.layout.item_apps_holder, null);
-			TextView textView = (TextView) grid.findViewById(R.id.label);
-			ImageView imageView = (ImageView) grid.findViewById(R.id.image);
+			TextView textView = grid.findViewById(R.id.label);
+			ImageView imageView = grid.findViewById(R.id.image);
 			textView.setText(names.get(position));
 			imageView.setImageResource(images.get(position));
 		}
 		else
 		{
-			grid = (View) convertView;
+			grid = convertView;
 		}
 		return grid;
 	}

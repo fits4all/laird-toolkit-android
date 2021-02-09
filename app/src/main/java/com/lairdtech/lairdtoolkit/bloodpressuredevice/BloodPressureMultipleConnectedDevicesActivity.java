@@ -55,7 +55,7 @@ public class BloodPressureMultipleConnectedDevicesActivity extends
 		boolean isDeviceAddedToTheList = mListConnectedDevicesHandler
 				.addDevice(thermometerManager);
 
-		if (isDeviceAddedToTheList == true)
+		if (isDeviceAddedToTheList)
 		{
 			thermometerManager.connect(device, false);
 			invalidateUiListConnectedDevicesHandler();
@@ -77,7 +77,7 @@ public class BloodPressureMultipleConnectedDevicesActivity extends
 	@Override
 	protected void toggleHint()
 	{
-		TextView hintTv = (TextView) findViewById(R.id.hintTv);
+		TextView hintTv = findViewById(R.id.hintTv);
 
 		if (mListConnectedDevicesHandler == null
 				|| mListConnectedDevicesHandler.getCount() <= 0)

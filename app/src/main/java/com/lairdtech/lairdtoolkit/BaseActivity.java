@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit;
 
 import android.app.Activity;
@@ -123,7 +115,7 @@ public class BaseActivity extends Activity implements ICommonUi,
 	/**
 	 * Called when the dialog of found bluetooth devices is cancelled
 	 * 
-	 * @param dialogInterface
+	 * @param dialogInterface Dialog Interface
 	 */
 	protected void onDialogFoundDevicesCancel(DialogInterface dialogInterface)
 	{}
@@ -192,9 +184,8 @@ public class BaseActivity extends Activity implements ICommonUi,
 		mDialogAbout.setTitle("About");
 		mDialogAbout.setCanceledOnTouchOutside(true);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			mDialogAbout.findViewById(R.id.logo).setLayerType(
-					View.LAYER_TYPE_SOFTWARE, null);
+		mDialogAbout.findViewById(R.id.logo).setLayerType(
+				View.LAYER_TYPE_SOFTWARE, null);
 
 		/*
 		 * set content to display in the about message
@@ -249,6 +240,7 @@ public class BaseActivity extends Activity implements ICommonUi,
 		super.onResume();
 		loadPref();
 		isInNewScreen = false;
+
 		/*
 		 * check that BT is enabled as the user could have turned it off during
 		 * the onPause.

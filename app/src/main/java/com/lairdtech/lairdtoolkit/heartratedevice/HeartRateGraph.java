@@ -1,11 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2014 Laird Technologies. All Rights Reserved.
- * 
- * The information contained herein is property of Laird Technologies.
- * Licensees are granted free, non-transferable use of the information. NO WARRANTY of ANY KIND is provided. 
- * This heading must NOT be removed from the file.
- ******************************************************************************/
-
 package com.lairdtech.lairdtoolkit.heartratedevice;
 
 import org.achartengine.model.XYSeries;
@@ -44,7 +36,7 @@ public class HeartRateGraph extends BaseGraph
 				IS_GRAPH_ZOOMABLE_BY_TOUCH_VERTICAL);
 		mRenderer.setYAxisMax(210);
 		mRenderer.setYAxisMin(0);
-		mDataset.addSeries(mCurrentSeries);
+		mDataSet.addSeries(mCurrentSeries);
 		// graph line
 		mCurrentRenderer = new XYSeriesRenderer();
 		mCurrentRenderer.setColor(Color.parseColor("#FF0000")); // FF0000

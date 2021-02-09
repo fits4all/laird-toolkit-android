@@ -57,7 +57,7 @@ public class BloodPressureMultipleConnectedDevicesAdapter extends
 		return convertView;
 	}
 
-	private class FieldReferences
+	private static class FieldReferences
 	{
 		TextView valueDeviceName;
 		TextView valueDeviceAddress;
@@ -71,20 +71,20 @@ public class BloodPressureMultipleConnectedDevicesAdapter extends
 
 	private void bindViews(FieldReferences fields, View convertView)
 	{
-		fields.valueDeviceAddress = (TextView) convertView
+		fields.valueDeviceAddress = convertView
 				.findViewById(R.id.valueDeviceAddress);
-		fields.valueDeviceName = (TextView) convertView
+		fields.valueDeviceName = convertView
 				.findViewById(R.id.valueDeviceName);
-		fields.valueDeviceBattery = (TextView) convertView
+		fields.valueDeviceBattery = convertView
 				.findViewById(R.id.valueDeviceBattery);
-		fields.valueDeviceRssi = (TextView) convertView
+		fields.valueDeviceRssi = convertView
 				.findViewById(R.id.valueDeviceRssi);
 
-		fields.valueSystolic = (TextView) convertView
+		fields.valueSystolic = convertView
 				.findViewById(R.id.valueSystolic);
-		fields.valueDiastolic = (TextView) convertView
+		fields.valueDiastolic = convertView
 				.findViewById(R.id.valueDiastolic);
-		fields.valueArterialPressure = (TextView) convertView
+		fields.valueArterialPressure = convertView
 				.findViewById(R.id.valueArterialPressure);
 	}
 
