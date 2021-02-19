@@ -132,8 +132,7 @@ public abstract class BleBaseDeviceManager extends BluetoothGattCallback
 	 */
 	public int getConnectionState()
 	{
-		return mBluetoothManager.getConnectionState(mBluetoothDevice,
-				BluetoothProfile.GATT);
+		return mBluetoothDevice != null ? mBluetoothManager.getConnectionState(mBluetoothDevice, BluetoothProfile.GATT) : BluetoothProfile.STATE_DISCONNECTED;
 	}
 
 	/**

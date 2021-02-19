@@ -33,8 +33,7 @@ public class SerialActivity extends BleBaseActivity implements
 	private boolean isPrefSendCR = true;
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.activity_serial);
 
 		mSerialManager = new SerialManager(this, this);

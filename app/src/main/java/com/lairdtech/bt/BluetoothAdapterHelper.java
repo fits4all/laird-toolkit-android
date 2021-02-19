@@ -41,8 +41,8 @@ public class BluetoothAdapterHelper
 	private static BluetoothManager mBluetoothManager;
 	private BluetoothAdapterHelperCallback mBluetoothAdapterHelperCallback;
 
-	// how long the scan operation will take, default 20 seconds
-	private static long BLE_SCAN_TIMEOUT = 20 * 1000;
+	// how long the scan operation will take, default 30 seconds
+	private static long BLE_SCAN_TIMEOUT = 30 * 1000;
 	/*
 	 * the BLE scan interval for stoppign and starting BLE scanning while doing
 	 * a periodically scan. use this to get updated RSSI values from android

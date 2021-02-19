@@ -2,8 +2,12 @@ package com.lairdtech.lairdtoolkit;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,48 +84,42 @@ public abstract class BleBaseActivity extends BaseActivity implements
 			@Override
 			public void onClick(View v)
 			{
-				switch (v.getId())
-				{
-				case R.id.btnScan:
-				{
-					if (!mBluetoothAdapterWrapper.isEnabled())
-					{
+				if (v.getId() == R.id.btnScan) {
+					if (!mBluetoothAdapterWrapper.isEnabled()) {
 						Log.w(TAG, "Bluetooth must be on to start scanning.");
 						Toast.makeText(getApplication(),
 								"Bluetooth must be on to start scanning.",
 								Toast.LENGTH_SHORT).show();
 						return;
 					}
-					else if (mBleBaseDeviceManager.getConnectionState() != BluetoothProfile.STATE_CONNECTED
-							&& mBleBaseDeviceManager.getConnectionState() != BluetoothProfile.STATE_CONNECTING)
-					{
+
+					if (!isLocationEnabled(getApplicationContext())) {
+						Log.w(TAG, "Location services must be on to start scanning.");
+						Toast.makeText(getApplication(),
+								"Location services must be on to start scanning.",
+								Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					if (mBleBaseDeviceManager.getConnectionState() != BluetoothProfile.STATE_CONNECTED
+							&& mBleBaseDeviceManager.getConnectionState() != BluetoothProfile.STATE_CONNECTING) {
 
 						// do a scan operation
-						if (isPrefPeriodicalScan)
-						{
+						if (isPrefPeriodicalScan) {
 							mBluetoothAdapterWrapper.startBleScanPeriodically();
-						}
-						else
-						{
+						} else {
 							mBluetoothAdapterWrapper.startBleScan();
 						}
-						mDialogFoundDevices.show();
-					}
-					else if (mBleBaseDeviceManager.getConnectionState() == BluetoothProfile.STATE_CONNECTED)
-					{
-						mBleBaseDeviceManager.disconnect();
 
-					}
-					else if (mBleBaseDeviceManager.getConnectionState() == BluetoothProfile.STATE_CONNECTING)
-					{
-						Toast.makeText(getApplication(),
-								"Wait for connection!", Toast.LENGTH_SHORT)
+						mDialogFoundDevices.show();
+					} else if (mBleBaseDeviceManager.getConnectionState() == BluetoothProfile.STATE_CONNECTED) {
+						mBleBaseDeviceManager.disconnect();
+					} else if (mBleBaseDeviceManager.getConnectionState() == BluetoothProfile.STATE_CONNECTING) {
+						Toast.makeText(getApplication(), "Wait for connection!", Toast.LENGTH_SHORT)
 								.show();
 					}
-					uiInvalidateBtnState();
 
-					break;
-				}
+					uiInvalidateBtnState();
 				}
 			}
 		});
@@ -317,6 +315,20 @@ public abstract class BleBaseActivity extends BaseActivity implements
 		mValueRSSI.setText(getResources().getString(R.string.non_applicable));
 		mValueDeviceAddress.setText(getResources().getString(
 				R.string.non_applicable));
+	}
+
+	@SuppressWarnings("deprecation")
+	public static Boolean isLocationEnabled(Context context) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			// This is a new method provided in API 28
+			LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+			return lm.isLocationEnabled();
+		} else {
+			// This was deprecated in API 28
+			int mode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE,
+					Settings.Secure.LOCATION_MODE_OFF);
+			return (mode != Settings.Secure.LOCATION_MODE_OFF);
+		}
 	}
 
 }
